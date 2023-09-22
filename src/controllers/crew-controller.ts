@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import CrewModel, { CrewDocument } from "models/crew";
+import CrewModel, { CrewDocument } from "../models/crew.js";
 
 
 export const getCrew = async (req: Request, res: Response) => {
