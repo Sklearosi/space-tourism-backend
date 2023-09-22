@@ -1,0 +1,116 @@
+openapi: 3.0.0
+info:
+  title: Destination
+  description: API
+  version: 0.1.9
+
+servers:
+  - url: http://localhost:3000/api
+    description: Production server
+  - url: http://localhost:3000/api
+    description: Local server
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Destination:
+      type: object
+      properties:
+        name:
+          type: string
+        images:
+          type: object
+          properties:
+            png:
+              type: string
+            webp:
+              type: string
+        description:
+          type: string
+        distance:
+          type: string
+        travel:
+          type: string
+
+    Crew:
+      type: object
+      properties:
+        name:
+          type: string
+        role:
+          type: string
+        images:
+          type: object
+          properties:
+            portrait:
+              type: string
+            landscape:
+              type: string
+        bio:
+          type: string
+
+    Technology:
+      type: object
+      properties:
+        name:
+          type: string
+        images:
+          type: object
+          properties:
+            portrait:
+              type: string
+            landscape:
+              type: string
+        description:
+          type: string
+
+paths:
+  /destination:
+    get:
+      summary: Get a list of destinations
+      tags:
+        - Destination
+      responses:
+        '200':
+          description: List of destinations retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Destination'
+
+  /crew:
+    get:
+      summary: Get a list of crew members
+      tags:
+        - Crew
+      responses:
+        '200':
+          description: List of crew members retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Crew'
+
+  /technology:
+    get:
+      summary: Get a list of technology items
+      tags:
+        - Technology
+      responses:
+        '200':
+          description: List of technology items retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Technology'
